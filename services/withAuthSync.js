@@ -12,10 +12,9 @@
 import React, { Component } from 'react';
 import nextCookie from 'next-cookies';
 import { connect } from 'react-redux';
+import Router from 'next/router'
 import { setAuthState } from '../redux/actions';
-// import { setTokenHeader, /* setLocaleHeader */ } from '../config/axios';
-// import { goTo } from '../../config/helpers';
-// import { getLocale } from '../../config/localization';
+// import { setTokenHeader } from '../config/axios';
 
 const signInUrl = '/login';
 
@@ -36,14 +35,12 @@ const authCheck = (ctx, redirect = true) => {
         ctx.res.end();
       } else {
         // We already checked for server. This should only happen on client.
-        // goTo(signInUrl);
+        Router.push(signInUrl)
       }
     }
 
     return null;
   }
-// console.log("user =====", user)
-  // const parsedUser = JSON.parse(user);
   return { token, user };
 };
 
@@ -67,32 +64,14 @@ const withAuthSync = (WrappedComponent, { redirect = true } = {}) => {
       return { ...componentProps, ...authProps };
     }
 
-    constructor(props) {
-      super(props);
 
-      this.syncLogout = this.syncLogout.bind(this);
-    }
 
-    componentDidMount() {
-      window.addEventListener('storage', this.syncLogout);
-    }
 
-    componentWillUnmount() {
-      window.removeEventListener('storage', this.syncLogout);
-      window.localStorage.removeItem('logout');
-    }
 
-    // eslint-disable-next-line class-methods-use-this
-    syncLogout(event) {
-      if (event.key === 'logout') {
-        // goTo(signInUrl);
-      }
-    }
 
     render() {
       const { token } = this.props;
       // setTokenHeader(token);
-      // setLocaleHeader('en');
       return token || !redirect ? <WrappedComponent {...this.props} /> : null;
     }
   }

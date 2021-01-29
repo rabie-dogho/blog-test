@@ -69,7 +69,7 @@ const Header = ({ sidebar, onClick, hasElevation }) => {
       <AppBar position="fixed" haselevation={hasElevation ? 1 : 0}>
         <Toolbar className={classes.root}>
           <Box>
-            <Link href="/" color="inherit" title="home page">
+            <Link href="/articles" color="inherit" title="home page">
               <div>
                 <Image bottom="0.3125rem" width="60px" height="60px" src={Logo} alt="Rabie Blog" />
               </div>

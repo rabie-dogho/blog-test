@@ -1,7 +1,9 @@
-const baseURL = process.env.NEXT_PUBLIC_API_URL;
+// const baseURL = process.env.NEXT_PUBLIC_API_URL;
 
-const endPoints = Object.freeze({
+ const endPoints = Object.freeze({
   REGISTER: '/register',
+  GET_ARTICLE: '/articles/{articleId}',
+  GET_ARTICLES: "/articles"
 });
 
 /**
@@ -21,7 +23,7 @@ export const getRestApi = (endpoint, { params = {}, query } = {}) => {
     url += `?${qs}`;
   }
 
-  return baseURL + url;
+  return  url;
 };
 
 export default getRestApi;

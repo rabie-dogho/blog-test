@@ -1,0 +1,6 @@
+/*  This file is created manually by me  */
+{
+    "presets": [
+      "next/babel"
+    ]
+  }

@@ -5,11 +5,10 @@ import { Box, Typography } from '@material-ui/core';
 // import { setBlogState } from '../redux/actions';
 // import { useLocalStorage } from '../hooks/useLocalStorage';
 import HeaderOneColumn from '../components/templates/HeaderOneColumn';
+import withAuthSync from '../services/withAuthSync';
 
-// import TextField from '@material-ui/core/TextField';
 
-export default function Home() {
-  // const { test } = useSelector((state) => state.blog);
+const Home = () => 
   // const dispatch = useDispatch();
   // const [testHook, setTestHook] = useLocalStorage('testHook', 'this is the default value')
 
@@ -18,7 +17,7 @@ export default function Home() {
   //   setTestHook("THIS IS THE NEW VALUE")
   // };
 
-  return (
+   (
     <HeaderOneColumn>
       <Head>
         <title>Rabie Blog</title>
@@ -32,5 +31,7 @@ export default function Home() {
         </Box>
       </main>
     </HeaderOneColumn>
-  );
-}
+  )
+
+  export default withAuthSync(Home);
+
