@@ -57,7 +57,7 @@ const ImageUploader = ({ onChange,error,value, maxFileSize }) => {
   return (
     <div>
       {imagePreviewUrl && <img className={ImageUploaderStyles.preview} src={imagePreviewUrl} />}
-      {errors && <Alert severity="error">{error || errors}</Alert>}
+      {(errors || error) && <Alert severity="error">{error || errors}</Alert>}
       <Button startIcon={<ImageIcon />} onClick={open} color="primary">
         {imagePreviewUrl ? 'Replace Image' : 'Upload Image'}
       </Button>

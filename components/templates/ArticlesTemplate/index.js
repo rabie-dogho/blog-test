@@ -6,7 +6,7 @@ import HeaderOneColumn from '../HeaderOneColumn';
 const AuthOneColumn = ({ children, title }) => (
   <HeaderOneColumn title={title}>
     <Box display="flex" justifyContent="center">
-      <Box maxWidth="800px">{children}</Box>
+      <Box maxWidth="800px" width="100%">{children}</Box>
     </Box>
   </HeaderOneColumn>
 );

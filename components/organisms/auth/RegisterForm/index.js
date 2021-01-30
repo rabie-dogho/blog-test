@@ -27,6 +27,12 @@ const RegisterAccountForm = () => {
         }}
         validate={(values) => {
           const errors = {};
+          if (!values.firstName) {
+            errors.firstName = 'First Name is required';
+          }
+          if (!values.lastName) {
+            errors.lastName = 'Last Name is required';
+          }
           if (!values.email) {
             errors.email = 'Email Address is required';
           } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)) {
@@ -62,6 +68,8 @@ const RegisterAccountForm = () => {
                   value={values.firstName}
                   onChange={handleChange}
                   onBlur={handleBlur}
+                  error={Boolean(touched.firstName && errors.firstName)}
+                  helperText={touched.firstName && errors.firstName}
                 />
               </Grid>
               <Grid item xs={12}>
@@ -72,6 +80,8 @@ const RegisterAccountForm = () => {
                   value={values.lastName}
                   onChange={handleChange}
                   onBlur={handleBlur}
+                  error={Boolean(touched.lastName && errors.lastName)}
+                  helperText={touched.lastName && errors.lastName}
                 />
               </Grid>
               <Grid item xs={12}>
@@ -83,7 +93,7 @@ const RegisterAccountForm = () => {
                   type="email"
                   onChange={handleChange}
                   onBlur={handleBlur}
-                  error={touched.email && errors.email}
+                  error={Boolean(touched.email && errors.email)}
                   helperText={touched.email && errors.email}
                 />
               </Grid>
@@ -97,7 +107,7 @@ const RegisterAccountForm = () => {
                   onChange={handleChange}
                   onBlur={handleBlur}
                   type="password"
-                  error={touched.password && errors.password}
+                  error={Boolean(touched.password && errors.password)}
                   helperText={touched.password && errors.password}
                 />
               </Grid>
@@ -111,7 +121,7 @@ const RegisterAccountForm = () => {
                   onChange={handleChange}
                   onBlur={handleBlur}
                   // fullWidth
-                  error={touched.password_confirmation && errors.password_confirmation}
+                  error={Boolean(touched.password_confirmation && errors.password_confirmation)}
                   helperText={touched.password_confirmation && errors.password_confirmation}
                 />
               </Grid>

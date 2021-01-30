@@ -59,8 +59,9 @@ const Header = ({ sidebar, onClick, hasElevation }) => {
 
   const signOutHandler = () => {
     // setAuthCookie(null);
-    router.reload();
     clearAuthInfo();
+    router.reload();
+
   };
 
   return (

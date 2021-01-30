@@ -10,6 +10,7 @@ import { EditorState } from 'draft-js';
 import createInlineToolbarPlugin, { Separator } from 'draft-js-inline-toolbar-plugin';
 import { stateToHTML } from 'draft-js-export-html';
 import { stateFromHTML } from 'draft-js-import-html';
+import { Alert } from '@material-ui/lab';
 
 import {
   ItalicButton,
@@ -30,7 +31,7 @@ const inlineToolbarPlugin = createInlineToolbarPlugin();
 const { InlineToolbar } = inlineToolbarPlugin;
 const plugins = [inlineToolbarPlugin];
 
-const RichTextEditor = ({ value, onChange }) => {
+const RichTextEditor = ({ value,error, onChange }) => {
   let editor = React.useRef(null);
   const editorStyles = useEditorStyles();
 
@@ -56,6 +57,7 @@ const RichTextEditor = ({ value, onChange }) => {
   //   console.log('EditorState', editorState);
 
   return (
+    <>
     <div className={editorStyles.EditorContainer} onClick={focus}>
       <Editor
         editorState={editorState}
@@ -82,6 +84,9 @@ const RichTextEditor = ({ value, onChange }) => {
         )}
       </InlineToolbar>
     </div>
+    {(error) && <Alert severity="error">{error}</Alert>}
+
+    </>
   );
 };
 

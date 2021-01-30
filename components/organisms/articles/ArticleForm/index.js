@@ -29,14 +29,15 @@ const ArticleForm = ({ article }) => {
       <Formik
         initialValues={{
           userId,
-          title: article?.title,
-          image: article?.image,
-          body: article?.body,
+          title: article.title,
+          image: article.image,
+          body:  article.body ,
+       
         }}
         validate={(values) => {
           const errors = {};
           if (!values.title) {
-            errors.title = 'Email Address is required';
+            errors.title = 'Title is required';
           }
           if (!values.image) {
             errors.image = 'Image is Required';
@@ -51,8 +52,8 @@ const ArticleForm = ({ article }) => {
       >
         {({
           values,
-          //   errors,
-          //   touched,
+          errors,
+          touched,
           handleChange,
           handleBlur,
           handleSubmit,
@@ -80,14 +81,20 @@ const ArticleForm = ({ article }) => {
                     value={values.title}
                     onChange={handleChange}
                     onBlur={handleBlur}
+                    error={Boolean(touched.title && errors.title)}
+                    helperText={touched.title && errors.title}
                   />
                 </Grid>
                 <Grid item xs={12}>
-                  <ImageUploader onChange={handleChangeImage} value={values.image} />
+                  <ImageUploader 
+                  onChange={handleChangeImage} 
+                  value={values.image}
+                  error={ errors.image}
+ />
                 </Grid>
                 <Grid item xs={12}>
                   <NoSsr>
-                    <RichTextEditor value={values.body} onChange={changeBodyContent} />
+                    <RichTextEditor error={errors.body} value={values.body} onChange={changeBodyContent} />
                   </NoSsr>
                 </Grid>
 
@@ -106,7 +113,14 @@ const ArticleForm = ({ article }) => {
 };
 
 ArticleForm.propTypes = {
-  article: PropTypes.object.isRequired,
+  article: PropTypes.object,
 };
 
+ArticleForm.defaultProps = {
+  article: {
+    title: '',
+    image: '',
+    body: '',
+  },
+};
 export default ArticleForm;
